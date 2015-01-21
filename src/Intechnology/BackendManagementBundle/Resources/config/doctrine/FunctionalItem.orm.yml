@@ -1,0 +1,56 @@
+Intechnology\BackendManagementBundle\Entity\FunctionalItem:
+    type: entity
+    table: functional_item
+    indexes:
+        active:
+            columns:
+                - active
+                - deleted
+        tblFunctionalItems_ibfk_1:
+            columns:
+                - f_functional_area_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        name:
+            type: string
+            nullable: true
+            length: 50
+            fixed: false
+        active:
+            type: string
+            nullable: true
+            length: null
+            fixed: false
+            default: Y
+        deleted:
+            type: string
+            nullable: true
+            length: null
+            fixed: false
+            default: N
+    manyToOne:
+        fFunctionalArea:
+            targetEntity: FunctionalArea
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                f_functional_area_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    manyToMany:
+        fUserType:
+            targetEntity: UserType
+            cascade: {  }
+            mappedBy: fFunctionalItem
+            inversedBy: null
+            joinTable: null
+            orderBy: null
+    lifecycleCallbacks: {  }

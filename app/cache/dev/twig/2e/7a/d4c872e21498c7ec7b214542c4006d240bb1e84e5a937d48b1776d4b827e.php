@@ -37,6 +37,18 @@ class __TwigTemplate_2e7ad4c872e21498c7ec7b214542c4006d240bb1e84e5a937d48b1776d4
     {
         // line 4
         echo "    Hello!
+    <div></div><a href=\"";
+        // line 5
+        echo $this->env->getExtension('routing')->getPath("_companies");
+        echo "\">Companies</a></div>
+    <div></div><a href=\"";
+        // line 6
+        echo $this->env->getExtension('routing')->getPath("_deployments");
+        echo "\">Deployments</a></div>
+    <div></div><a href=\"";
+        // line 7
+        echo $this->env->getExtension('routing')->getPath("_users");
+        echo "\">Users</a></div>
 ";
     }
 
@@ -52,6 +64,6 @@ class __TwigTemplate_2e7ad4c872e21498c7ec7b214542c4006d240bb1e84e5a937d48b1776d4
 
     public function getDebugInfo()
     {
-        return array (  39 => 4,  36 => 3,  11 => 1,);
+        return array (  50 => 7,  46 => 6,  42 => 5,  39 => 4,  36 => 3,  11 => 1,);
     }
 }

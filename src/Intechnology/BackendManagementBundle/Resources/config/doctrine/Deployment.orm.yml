@@ -1,0 +1,57 @@
+Intechnology\BackendManagementBundle\Entity\Deployment:
+    type: entity
+    table: deployment
+    indexes:
+        active:
+            columns:
+                - active
+                - deleted
+        fk_company_id:
+            columns:
+                - company_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        name:
+            type: string
+            nullable: true
+            length: 50
+            fixed: false
+        mapPolygon:
+            type: text
+            nullable: true
+            length: 65535
+            fixed: false
+            column: map_polygon
+        created:
+            type: datetime
+            nullable: true
+        lastUpdate:
+            type: datetime
+            nullable: true
+            column: last_update
+        active:
+            type: boolean
+            nullable: true
+        deleted:
+            type: boolean
+            nullable: true
+    manyToOne:
+        company:
+            targetEntity: Company
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                company_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks:
+        prePersist: [setCreatedValue]
+        preFlush: [setUpdatedValue]

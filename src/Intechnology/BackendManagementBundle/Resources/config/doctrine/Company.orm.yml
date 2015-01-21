@@ -1,0 +1,147 @@
+Intechnology\BackendManagementBundle\Entity\Company:
+    type: entity
+    table: company
+    indexes:
+        active:
+            columns:
+                - active
+                - deleted
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        name:
+            type: string
+            nullable: true
+            length: 50
+            fixed: false
+        addressLine1:
+            type: string
+            nullable: true
+            length: 100
+            fixed: false
+            column: address_line1
+        addressLine2:
+            type: string
+            nullable: true
+            length: 100
+            fixed: false
+            column: address_line2
+        addressLine3:
+            type: string
+            nullable: true
+            length: 100
+            fixed: false
+            column: address_line3
+        town:
+            type: string
+            nullable: true
+            length: 100
+            fixed: false
+        county:
+            type: string
+            nullable: true
+            length: 100
+            fixed: false
+        postcode:
+            type: string
+            nullable: true
+            length: 20
+            fixed: false
+        fCountryId:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: f_country_id
+        telephone:
+            type: string
+            nullable: true
+            length: 30
+            fixed: false
+        primaryContactName:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: primary_contact_name
+        primaryContactEmailAddress:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: primary_contact_email_address
+        outOfHoursContactName:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: out_of_hours_contact_name
+        outOfHoursContactTelephone:
+            type: string
+            nullable: true
+            length: 30
+            fixed: false
+            column: out_of_hours_contact_telephone
+        outOfHoursContactEmailAddress:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: out_of_hours_contact_email_address
+        logo:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+        maxDeploymentCount:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: max_deployment_count
+        maxAggregateDeploymentBandwidth:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: max_aggregate_deployment_bandwidth
+        maxSimultaneousUsers:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: max_simultaneous_users
+        couponCapability:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: coupon_capability
+        paymentLimitations:
+            type: text
+            nullable: true
+            length: 65535
+            fixed: false
+            column: payment_limitations
+        created:
+            type: datetime
+            nullable: true
+        lastUpdate:
+            type: datetime
+            nullable: true
+            column: last_update
+        superCompany:
+            type: boolean
+            nullable: true
+            column: super_company
+        active:
+            type: boolean
+            nullable: true
+        deleted:
+            type: boolean
+            nullable: true
+    lifecycleCallbacks:
+        prePersist: [setCreatedValue]
+        preFlush: [setUpdatedValue]

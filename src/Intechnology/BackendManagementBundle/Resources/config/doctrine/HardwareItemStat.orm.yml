@@ -1,0 +1,68 @@
+Intechnology\BackendManagementBundle\Entity\HardwareItemStat:
+    type: entity
+    table: hardware_item_stat
+    indexes:
+        created:
+            columns:
+                - created
+        hardware_item_stats_ibfk_1:
+            columns:
+                - f_hardware_item_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        created:
+            type: datetime
+            nullable: false
+        pingable:
+            type: string
+            nullable: false
+            length: null
+            fixed: false
+        uptime:
+            type: bigint
+            nullable: false
+            unsigned: false
+        cpuUsage:
+            type: integer
+            nullable: false
+            unsigned: false
+            column: cpu_usage
+        operationalStatus:
+            type: string
+            nullable: false
+            length: null
+            fixed: false
+            column: operational_status
+        octetsIn:
+            type: bigint
+            nullable: false
+            unsigned: false
+            column: octets_in
+        octetsOut:
+            type: bigint
+            nullable: false
+            unsigned: false
+            column: octets_out
+        clientCount:
+            type: integer
+            nullable: false
+            unsigned: false
+            column: client_count
+    manyToOne:
+        fHardwareItem:
+            targetEntity: HardwareItem
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                f_hardware_item_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

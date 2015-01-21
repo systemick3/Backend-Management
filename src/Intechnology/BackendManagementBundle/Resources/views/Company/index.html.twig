@@ -1,0 +1,11 @@
+{% extends "IntechnologyBackendManagementBundle::layout.html.twig" %}
+
+{% block int_bm_content %}
+    <div><a href="{{ path('_dashboard') }}">Home</a></div>
+    <div><a href="{{ path('_company_create') }}">Add new company</a></div>
+    <ul>
+        {% for company in companies %}
+            <li><a href="{{ path('_company_update', {'id': company.getId()}) }}">{{ company.getName() }}</a></li>
+        {% endfor %}
+    </ul>
+{% endblock int_bm_content %}

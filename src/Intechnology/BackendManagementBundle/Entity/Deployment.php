@@ -1,0 +1,256 @@
+<?php
+
+namespace Intechnology\BackendManagementBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Deployment
+ */
+class Deployment
+{
+    /**
+     * @var integer
+     */
+    private $id;
+
+    /**
+     * @var string
+     */
+    private $name;
+
+    /**
+     * @var string
+     */
+    private $mapPolygon;
+
+    /**
+     * @var \DateTime
+     */
+    private $created;
+
+    /**
+     * @var \DateTime
+     */
+    private $lastUpdate;
+
+    /**
+     * @var string
+     */
+    private $active;
+
+    /**
+     * @var string
+     */
+    private $deleted;
+
+    /**
+     * @var \Intechnology\BackendManagementBundle\Entity\Company
+     */
+    private $companyId;
+
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     * @return Deployment
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string 
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set mapPolygon
+     *
+     * @param string $mapPolygon
+     * @return Deployment
+     */
+    public function setMapPolygon($mapPolygon)
+    {
+        $this->mapPolygon = $mapPolygon;
+
+        return $this;
+    }
+
+    /**
+     * Get mapPolygon
+     *
+     * @return string 
+     */
+    public function getMapPolygon()
+    {
+        return $this->mapPolygon;
+    }
+
+    /**
+     * Set created
+     *
+     * @param \DateTime $created
+     * @return Deployment
+     */
+    public function setCreated($created)
+    {
+        $this->created = $created;
+
+        return $this;
+    }
+
+    /**
+     * Get created
+     *
+     * @return \DateTime 
+     */
+    public function getCreated()
+    {
+        return $this->created;
+    }
+
+    /**
+     * Set lastUpdate
+     *
+     * @param \DateTime $lastUpdate
+     * @return Deployment
+     */
+    public function setLastUpdate($lastUpdate)
+    {
+        $this->lastUpdate = $lastUpdate;
+
+        return $this;
+    }
+
+    /**
+     * Get lastUpdate
+     *
+     * @return \DateTime 
+     */
+    public function getLastUpdate()
+    {
+        return $this->lastUpdate;
+    }
+
+    /**
+     * Set active
+     *
+     * @param string $active
+     * @return Deployment
+     */
+    public function setActive($active)
+    {
+        $this->active = $active;
+
+        return $this;
+    }
+
+    /**
+     * Get active
+     *
+     * @return string 
+     */
+    public function getActive()
+    {
+        return $this->active;
+    }
+
+    /**
+     * Set deleted
+     *
+     * @param string $deleted
+     * @return Deployment
+     */
+    public function setDeleted($deleted)
+    {
+        $this->deleted = $deleted;
+
+        return $this;
+    }
+
+    /**
+     * Get deleted
+     *
+     * @return string 
+     */
+    public function getDeleted()
+    {
+        return $this->deleted;
+    }
+
+    /**
+     * Set fCompany
+     *
+     * @param \Intechnology\BackendManagementBundle\Entity\Company $fCompany
+     * @return Deployment
+     */
+    public function setCompanyId($companyId)
+    {
+        $this->companyId = $companyId;
+
+        return $this;
+    }
+
+    /**
+     * Get fCompany
+     *
+     * @return \Intechnology\BackendManagementBundle\Entity\Company 
+     */
+    public function getCompanyId()
+    {
+        return $this->companyId;
+    }
+    /**
+     * @var \Intechnology\BackendManagementBundle\Entity\Company
+     */
+    private $Company;
+
+    public function setCompany($company)
+    {
+      $this->Company = $company;
+
+      return $this;
+    }
+
+    public function getCompany()
+    {
+      return $this->Company;
+    }
+
+    public function setCreatedValue()
+    {
+      $this->created = new \DateTime();
+    }
+
+    public function setUpdatedValue()
+    {
+      $this->lastUpdate = new \DateTime();
+    }
+
+    /**
+     * @var \Intechnology\BackendManagementBundle\Entity\Company
+     */
+    private $company;
+
+
+}

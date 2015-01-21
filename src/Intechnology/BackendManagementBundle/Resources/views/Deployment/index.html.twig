@@ -1,0 +1,11 @@
+{% extends "IntechnologyBackendManagementBundle::layout.html.twig" %}
+
+{% block int_bm_content %}
+    <div><a href="{{ path('_dashboard') }}">Home</a></div>
+    <div><a href="{{ path('_deployment_create') }}">Add new deployment</a></div>
+    <ul>
+        {% for deployment in deployments %}
+            <li><a href="{{ path('_deployment_update', {'id': deployment.getId()}) }}">{{ deployment.getName() }}</a></li>
+        {% endfor %}
+    </ul>
+{% endblock int_bm_content %}

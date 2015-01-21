@@ -1,0 +1,41 @@
+Intechnology\BackendManagementBundle\Entity\FunctionalArea:
+    type: entity
+    table: functional_area
+    indexes:
+        active:
+            columns:
+                - active
+                - deleted
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        name:
+            type: string
+            nullable: true
+            length: 50
+            fixed: false
+        navigationClass:
+            type: string
+            nullable: true
+            length: 50
+            fixed: false
+            column: navigation_class
+        active:
+            type: string
+            nullable: true
+            length: null
+            fixed: false
+            default: Y
+        deleted:
+            type: string
+            nullable: true
+            length: null
+            fixed: false
+            default: N
+    lifecycleCallbacks: {  }

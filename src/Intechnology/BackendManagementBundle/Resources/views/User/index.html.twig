@@ -1,0 +1,11 @@
+{% extends "IntechnologyBackendManagementBundle::layout.html.twig" %}
+
+{% block int_bm_content %}
+    <div><a href="{{ path('_dashboard') }}">Home</a></div>
+    <div><a href="{{ path('_user_create') }}">Add new user</a></div>
+    <ul>
+        {% for user in users %}
+            <li><a href="{{ path('_user_update', {'id': user.getId()}) }}">{{ user.getUsername() }}</a></li>
+        {% endfor %}
+    </ul>
+{% endblock int_bm_content %}

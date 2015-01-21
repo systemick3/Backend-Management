@@ -1,0 +1,98 @@
+Intechnology\BackendManagementBundle\Entity\Users:
+    type: entity
+    table: users
+    indexes:
+        email_address:
+            columns:
+                - email_address
+                - password
+                - active
+                - deleted
+        tblUsers_ibfk_1:
+            columns:
+                - f_company_id
+        tblUsers_ibfk_2:
+            columns:
+                - f_user_type_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        firstName:
+            type: string
+            nullable: true
+            length: 50
+            fixed: false
+            column: first_name
+        lastName:
+            type: string
+            nullable: true
+            length: 50
+            fixed: false
+            column: last_name
+        emailAddress:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            column: email_address
+        password:
+            type: string
+            nullable: false
+            length: 64
+            fixed: false
+        telephone:
+            type: string
+            nullable: true
+            length: 20
+            fixed: false
+        mobileTelephone:
+            type: string
+            nullable: true
+            length: 20
+            fixed: false
+            column: mobile_telephone
+        created:
+            type: datetime
+            nullable: true
+        lastUpdate:
+            type: datetime
+            nullable: true
+            column: last_update
+        active:
+            type: string
+            nullable: true
+            length: null
+            fixed: false
+            default: Y
+        deleted:
+            type: string
+            nullable: true
+            length: null
+            fixed: false
+            default: N
+    manyToOne:
+        fCompany:
+            targetEntity: Company
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                f_company_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        fUserType:
+            targetEntity: UserType
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                f_user_type_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

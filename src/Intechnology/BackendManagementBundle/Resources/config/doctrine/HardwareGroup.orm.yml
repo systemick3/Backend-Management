@@ -1,0 +1,77 @@
+Intechnology\BackendManagementBundle\Entity\HardwareGroup:
+    type: entity
+    table: hardware_group
+    indexes:
+        active:
+            columns:
+                - active
+                - deleted
+        hardware_groups_ibfk_1:
+            columns:
+                - f_deployment_id
+        hardware_groups_ibfk_2:
+            columns:
+                - f_parent_hardware_group_id
+        hardware_groups_ibfk_3:
+            columns:
+                - f_parent_hardware_item_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        name:
+            type: string
+            nullable: true
+            length: 50
+            fixed: false
+        location:
+            type: text
+            nullable: true
+            length: 65535
+            fixed: false
+        active:
+            type: string
+            nullable: true
+            length: null
+            fixed: false
+            default: Y
+        deleted:
+            type: string
+            nullable: true
+            length: null
+            fixed: false
+            default: N
+    manyToOne:
+        fDeployment:
+            targetEntity: Deployment
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                f_deployment_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        fParentHardwareGroup:
+            targetEntity: HardwareGroup
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                f_parent_hardware_group_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        fParentHardwareItem:
+            targetEntity: HardwareItem
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                f_parent_hardware_item_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

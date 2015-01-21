@@ -1,0 +1,52 @@
+Intechnology\BackendManagementBundle\Entity\UserType:
+    type: entity
+    table: user_type
+    indexes:
+        active:
+            columns:
+                - active
+                - deleted
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        name:
+            type: string
+            nullable: true
+            length: 50
+            fixed: false
+        active:
+            type: string
+            nullable: true
+            length: null
+            fixed: false
+            default: Y
+        deleted:
+            type: string
+            nullable: true
+            length: null
+            fixed: false
+            default: N
+    manyToMany:
+        fFunctionalItem:
+            targetEntity: FunctionalItem
+            cascade: {  }
+            mappedBy: null
+            inversedBy: fUserType
+            joinTable:
+                name: user_type_functional_item
+                joinColumns:
+                    -
+                        name: f_user_type_id
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    -
+                        name: f_functional_item_id
+                        referencedColumnName: id
+            orderBy: null
+    lifecycleCallbacks: {  }

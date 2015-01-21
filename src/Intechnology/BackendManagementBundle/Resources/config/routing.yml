@@ -1,3 +1,39 @@
-intechnology_backend_management_homepage:
+_dashboard:
     path:     /
     defaults: { _controller: IntechnologyBackendManagementBundle:Default:index }
+
+_companies:
+    path: /companies
+    defaults: { _controller: IntechnologyBackendManagementBundle:Company:index }
+
+_company_create:
+    path: /company
+    defaults: { _controller: IntechnologyBackendManagementBundle:Company:create }
+
+_company_update:
+    path: /company/{id}
+    defaults: { _controller: IntechnologyBackendManagementBundle:Company:update }
+
+_deployments:
+    path: /deployments
+    defaults: { _controller: IntechnologyBackendManagementBundle:Deployment:index }
+
+_deployment_create:
+    path: /deployment
+    defaults: { _controller: IntechnologyBackendManagementBundle:Deployment:create }
+
+_deployment_update:
+    path: /deployment/{id}
+    defaults: { _controller: IntechnologyBackendManagementBundle:Deployment:update }
+
+_users:
+    path: /users
+    defaults: { _controller: IntechnologyBackendManagementBundle:User:index }
+
+_user_create:
+    path: /user
+    defaults: { _controller: IntechnologyBackendManagementBundle:User:create }
+
+_user_update:
+    path: /user/{id}
+    defaults: { _controller: IntechnologyBackendManagementBundle:User:update }

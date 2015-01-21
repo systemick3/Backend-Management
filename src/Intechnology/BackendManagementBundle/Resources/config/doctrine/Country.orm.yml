@@ -1,0 +1,70 @@
+Intechnology\BackendManagementBundle\Entity\Country:
+    type: entity
+    table: country
+    indexes:
+        name:
+            columns:
+                - name
+        iso_code:
+            columns:
+                - iso_code
+        active:
+            columns:
+                - active
+                - deleted
+        iso3_code:
+            columns:
+                - iso3_code
+        iso_num_code:
+            columns:
+                - iso_num_code
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        name:
+            type: string
+            nullable: true
+            length: 50
+            fixed: false
+        printableName:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            column: printable_name
+        isoCode:
+            type: string
+            nullable: true
+            length: 2
+            fixed: false
+            column: iso_code
+        iso3Code:
+            type: string
+            nullable: false
+            length: 3
+            fixed: false
+            column: iso3_code
+        isoNumCode:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: iso_num_code
+        active:
+            type: string
+            nullable: true
+            length: null
+            fixed: false
+            default: Y
+        deleted:
+            type: string
+            nullable: true
+            length: null
+            fixed: false
+            default: N
+    lifecycleCallbacks: {  }

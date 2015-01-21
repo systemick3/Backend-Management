@@ -1,0 +1,40 @@
+Intechnology\BackendManagementBundle\Entity\Session:
+    type: entity
+    table: session
+    id:
+        sessionId:
+            type: string
+            nullable: false
+            length: 40
+            fixed: false
+            default: ''
+            id: true
+            column: session_id
+            generator:
+                strategy: IDENTITY
+    fields:
+        data:
+            type: text
+            nullable: true
+            length: 65535
+            fixed: false
+        csrf:
+            type: text
+            nullable: true
+            length: 65535
+            fixed: false
+        ip:
+            type: string
+            nullable: true
+            length: 40
+            fixed: false
+        agent:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+        stamp:
+            type: integer
+            nullable: true
+            unsigned: false
+    lifecycleCallbacks: {  }
