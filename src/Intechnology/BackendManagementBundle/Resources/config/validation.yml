@@ -1,0 +1,9 @@
+# AppBundle/Resources/config/validation.yml
+Intechnology\BackendManagementBundle\Entity\User:
+    properties:
+        firstName:
+            - NotBlank: ~
+        lastName:
+            - NotBlank: ~
+        company:
+            - NotBlank: ~

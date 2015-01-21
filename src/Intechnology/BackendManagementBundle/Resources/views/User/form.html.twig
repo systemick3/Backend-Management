@@ -3,5 +3,49 @@
 {% block int_bm_content %}
     {{ form_start(form) }}
         {{ form_errors(form) }}
+        <div class="form-row">
+            <div class="column">
+                {{ form_label(form.firstName) }}
+                {{ form_widget(form.firstName) }}
+            </div>
+            <div class="column">
+                {{ form_label(form.lastName) }}
+                {{ form_widget(form.lastName) }}
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="column">
+                {{ form_label(form.telephone) }}
+                {{ form_widget(form.telephone) }}
+            </div>
+            <div class="column">
+                {{ form_label(form.mobileTelephone) }}
+                {{ form_widget(form.mobileTelephone) }}
+            </div>
+        </div>
+        <div class="form-row">
+            {{ form_label(form.username) }}
+            {{ form_widget(form.username) }}
+        </div>
+        <div class="form-row">
+            <div class="column">
+                {{ form_label(form.company) }}
+                {{ form_widget(form.company) }}
+            </div>
+            <div class="column">
+                {{ form_label(form.userType) }}
+                {{ form_widget(form.userType) }}
+            </div>
+        </div>
+        <div class="form-row">
+            {{ form_row( form.password.first, { 'label': 'Password' }) }}
+        </div>
+        <div class="form-row">
+            {{ form_row( form.password.second, { 'label': 'Confirm Password' }) }}
+        </div>
+        <div class="form-row">
+            {{ form_label(form.isActive) }}
+            {{ form_widget( form.isActive) }}
+        </div>
     {{ form_end(form) }}
 {% endblock int_bm_content %}

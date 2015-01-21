@@ -35,12 +35,19 @@ class UserController extends Controller {
     if ($form->isValid()) {
       $em = $this->getDoctrine()->getManager();
 
+      $plainPassword = $user->getPassword();
+      //die('pw = ' . $plainPassword);
+      $encoder = $this->container->get('security.password_encoder');
+      $encoded = $encoder->encodePassword($user, $plainPassword);
+
+      $user->setPassword($encoded);
+
       $em->persist($user);
       $em->flush();
 
       $request->getSession()->getFlashBag()->add(
         'notice',
-        'Created new user: ' . $user->getName()
+        'Created new user: ' . $user->getUsername()
       );
 
       return $this->redirect($this->generateUrl('_users'));
@@ -55,7 +62,7 @@ class UserController extends Controller {
       ->getRepository('IntechnologyBackendManagementBundle:User')
       ->find($request->get('id'));
 
-    if (!user) {
+    if (!$user) {
       throw $this->createNotFoundException(
         'No user found for id '.$id
       );
@@ -83,12 +90,12 @@ class UserController extends Controller {
 
       $request->getSession()->getFlashBag()->add(
         'notice',
-        'Updated user: ' . $user->getName()
+        'Updated user: ' . $user->getUsername()
       );
 
       return $this->redirect($this->generateUrl('_users'));
     }
 
-    return $this->render('IntechnologyBackendManagementBundle:Company:form.html.twig', array('form' => $form->createView()));
+    return $this->render('IntechnologyBackendManagementBundle:User:form.html.twig', array('form' => $form->createView()));
   }
 } 

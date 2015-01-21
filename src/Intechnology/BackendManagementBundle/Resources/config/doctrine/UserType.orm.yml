@@ -21,17 +21,11 @@ Intechnology\BackendManagementBundle\Entity\UserType:
             length: 50
             fixed: false
         active:
-            type: string
+            type: boolean
             nullable: true
-            length: null
-            fixed: false
-            default: Y
         deleted:
-            type: string
+            type: boolean
             nullable: true
-            length: null
-            fixed: false
-            default: N
     manyToMany:
         fFunctionalItem:
             targetEntity: FunctionalItem

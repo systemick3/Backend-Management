@@ -37,3 +37,14 @@ _user_create:
 _user_update:
     path: /user/{id}
     defaults: { _controller: IntechnologyBackendManagementBundle:User:update }
+
+login_route:
+    path:     /login
+    defaults: { _controller: IntechnologyBackendManagementBundle:Security:login }
+
+login_check:
+    path: /login_check
+
+_logout:
+    path: /logout
+    #defaults: { _controller: IntechnologyBackendManagementBundle:Security:logout }

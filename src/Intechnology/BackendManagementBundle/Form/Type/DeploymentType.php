@@ -24,7 +24,7 @@ class DeploymentType extends AbstractType
       //->add('lastUpdate')
       ->add('active')
       ->add('deleted')
-      //->add('fCompanyId')
+      ->add('CompanyId')
       ->add('Save', 'submit');
   }
 
