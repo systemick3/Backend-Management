@@ -5,5 +5,12 @@ Intechnology\BackendManagementBundle\Entity\User:
             - NotBlank: ~
         lastName:
             - NotBlank: ~
+        username:
+            - NotBlank: ~
         company:
+            - NotBlank: ~
+
+Intechnology\BackendManagementBundle\Entity\Company:
+    properties:
+        name:
             - NotBlank: ~

@@ -6,6 +6,9 @@ Intechnology\BackendManagementBundle\Entity\Company:
             columns:
                 - active
                 - deleted
+        country_id_fk:
+            columns:
+                - country_id
     id:
         id:
             type: integer
@@ -53,11 +56,6 @@ Intechnology\BackendManagementBundle\Entity\Company:
             nullable: true
             length: 20
             fixed: false
-        fCountryId:
-            type: integer
-            nullable: true
-            unsigned: false
-            column: f_country_id
         telephone:
             type: string
             nullable: true
@@ -142,6 +140,16 @@ Intechnology\BackendManagementBundle\Entity\Company:
         deleted:
             type: boolean
             nullable: true
+    manyToOne:
+        country:
+            targetEntity: Country
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                country_id:
+                    referencedColumnName: id
+            orphanRemoval: false
     lifecycleCallbacks:
         prePersist: [setCreatedValue]
-        preFlush: [setUpdatedValue]
+-       preFlush: [setUpdatedValue]

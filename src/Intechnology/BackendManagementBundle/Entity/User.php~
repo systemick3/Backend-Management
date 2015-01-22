@@ -405,7 +405,17 @@ class User implements UserInterface, \Serializable
         ) = unserialize($serialized);
     }
 
-  public function getSalt() {
-    
-  }
+    public function getSalt() {
+
+    }
+
+    public function setCreatedValue()
+    {
+      $this->created = new \DateTime();
+    }
+
+    public function setUpdatedValue()
+    {
+      $this->lastUpdate = new \DateTime();
+    }
 }

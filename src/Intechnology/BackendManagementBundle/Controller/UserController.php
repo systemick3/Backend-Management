@@ -36,7 +36,6 @@ class UserController extends Controller {
       $em = $this->getDoctrine()->getManager();
 
       $plainPassword = $user->getPassword();
-      //die('pw = ' . $plainPassword);
       $encoder = $this->container->get('security.password_encoder');
       $encoded = $encoder->encodePassword($user, $plainPassword);
 
@@ -85,6 +84,12 @@ class UserController extends Controller {
 
     if ($form->isValid()) {
       $em = $this->getDoctrine()->getManager();
+
+      $plainPassword = $user->getPassword();
+      $encoder = $this->container->get('security.password_encoder');
+      $encoded = $encoder->encodePassword($user, $plainPassword);
+
+      $user->setPassword($encoded);
 
       $em->flush();
 
