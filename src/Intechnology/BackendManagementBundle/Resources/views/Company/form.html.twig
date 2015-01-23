@@ -1,7 +1,177 @@
 {% extends "IntechnologyBackendManagementBundle::layout.html.twig" %}
 
 {% block int_bm_content %}
+    <div class="title">
+        {{ title }}
+    </div>
+    <div class="messages">
+        {% for type, messages in app.session.flashbag.all() %}
+            {% for message in messages %}
+                <div class="flash-{{ type }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+    </div>
+    <div class="content">
+        <div class="form-container">
+            {{ form_start(form) }}
+            <div class="form-errors row">{{ form_errors(form) }}</div>
+            <div class="form-row">
+                <h4>Company details</h4>
+                <div>{{ form_label(form.name) }}:</div>
+                <div>{{ form_widget(form.name) }}</div>
+            </div>
+            <div class="row form-row">
+                <div class="col-md-2 column">
+                    <div class="row form-row">
+                        <div class="col-md-1 column-full-width">
+                            <h4>Address:</h4>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div>{{ form_label(form.addressLine1) }}</div>
+                        <div>{{ form_widget(form.addressLine1) }}</div>
+                        <div>{{ form_label(form.addressLine2) }}</div>
+                        <div>{{ form_widget(form.addressLine2) }}</div>
+                        <div>{{ form_label(form.addressLine3) }}</div>
+                        <div>{{ form_widget(form.addressLine3) }}</div>
+                    </div>
+                    <div>{{ form_label(form.town) }}:</div>
+                    <div>{{ form_widget(form.town) }}</div>
+                    <div>{{ form_label(form.county) }}:</div>
+                    <div>{{ form_widget(form.county) }}</div>
+                    <div>{{ form_label(form.postcode) }}:</div>
+                    <div>{{ form_widget(form.postcode) }}</div>
+                    <div>{{ form_label(form.country) }}:</div>
+                    <div>{{ form_widget(form.country) }}</div>
+                    <div>{{ form_label(form.telephone) }}:</div>
+                    <div>{{ form_widget(form.telephone) }}</div>
+                </div>
+                <div class="col-md-2 column">
+                    <div class="row form-row">
+                        <div class="spacer-1"></div>
+                        <div class="col-md-1 column-full-width">
+                            <h4>Primary contact:</h4>
+                        </div>
+                    </div>
+                    <div>{{ form_label(form.primaryContactName) }}</div>
+                    <div>{{ form_widget(form.primaryContactName) }}</div>
+                    <div>{{ form_label(form.primaryContactEmailAddress) }}</div>
+                    <div>{{ form_widget(form.primaryContactEmailAddress) }}</div>
+                    <div class="spacer-5"></div>
+                    <div class="row form-row">
+                        <div class="col-md-1 column-full-width">
+                            <h4>Out of hours contact:</h4>
+                        </div>
+                    </div>
+                    <div class="spacer-3"></div>
+                    <div>{{ form_label(form.outOfHoursContactName) }}</div>
+                    <div>{{ form_widget(form.outOfHoursContactName) }}</div>
+                    <div>{{ form_label(form.outOfHoursContactTelephone) }}</div>
+                    <div>{{ form_widget(form.outOfHoursContactTelephone) }}</div>
+                    <div>{{ form_label(form.outOfHoursContactEmailAddress) }}</div>
+                    <div>{{ form_widget(form.outOfHoursContactEmailAddress) }}</div>
+                </div>
+            </div>
+            <div class="row form-row">
+                <div class="col-md-1 column form-group">
+                    <h4>Status:</h4>
+                    <div class="checkbox">
+                        <label>{{ form_widget(form.active) }} <strong>Active</strong></label>
+                    </div>
+                    <div class="checkbox">
+                        <label>{{ form_widget(form.superCompany) }} <strong>Super company</strong></label>
+                    </div>
+                </div>
+            </div>
+            <div class="row form-row">
+                <div class="col-md-2 column-full-width">
+                    <h4>Deployment Limitations:</h4>
+                </div>
+            </div>
+            <div class="row form-row">
+                <div class="col-md-2 column">
+                    <div>{{ form_label(form.maxDeploymentCount) }}</div>
+                    <div>{{ form_widget(form.maxDeploymentCount) }}</div>
+                    <div>{{ form_label(form.maxAggregateDeploymentBandwidth) }}</div>
+                    <div>{{ form_widget(form.maxAggregateDeploymentBandwidth) }}</div>
+                    <div>{{ form_label(form.maxSimultaneousUsers) }}</div>
+                    <div>{{ form_widget(form.maxSimultaneousUsers) }}</div>
+                </div>
+                <div class="col-md-2 column">
+                    <div>{{ form_label(form.couponCapability) }}</div>
+                    <div>{{ form_widget(form.couponCapability) }}</div>
+                    <div>{{ form_label(form.paymentLimitations) }}</div>
+                    <div>{{ form_widget(form.paymentLimitations) }}</div>
+                </div>
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+    <!--
     {{ form_start(form) }}
         {{ form_errors(form) }}
+        <div class="form-row">
+            {{ form_label(form.name) }}
+            {{ form_widget(form.name) }}
+        </div>
+        <div class="form-row">
+            <div class="column">
+                <div>Address:</div>
+                {{ form_widget(form.addressLine1) }}
+                {{ form_widget(form.addressLine2) }}
+                {{ form_widget(form.addressLine3) }}
+                <div>Town:</div>
+                {{ form_widget(form.town) }}
+                <div>County:</div>
+                {{ form_widget(form.county) }}
+                <div>Postcode:</div>
+                {{ form_widget(form.postcode) }}
+                <div>Country:</div>
+                {{ form_widget(form.country) }}
+                <div>Telephone:</div>
+                {{ form_widget(form.telephone) }}
+            </div>
+            <div class="column">
+                <h3>Primary contact</h3>
+                <div>{{ form_label(form.primaryContactName) }}</div>
+                <div>{{ form_widget(form.primaryContactName) }}</div>
+                <div>{{ form_label(form.primaryContactEmailAddress) }}</div>
+                <div>{{ form_widget(form.primaryContactEmailAddress) }}</div>
+                <h3>Out of hours contact</h3>
+                <div>{{ form_label(form.outOfHoursContactName) }}</div>
+                <div>{{ form_widget(form.outOfHoursContactName) }}</div>
+                <div>{{ form_label(form.outOfHoursContactTelephone) }}</div>
+                <div>{{ form_widget(form.outOfHoursContactTelephone) }}</div>
+                <div>{{ form_label(form.outOfHoursContactEmailAddress) }}</div>
+                <div>{{ form_widget(form.outOfHoursContactEmailAddress) }}</div>
+            </div>
+        </div>
+        <div class="form-row">
+            <h3>Status:</h3>
+            {{ form_label(form.active) }}
+            {{ form_widget(form.active) }}
+            {{ form_label(form.superCompany) }}
+            {{ form_widget(form.superCompany) }}
+        </div>
+        <div class="form-row">
+            <h3>Deployment Limitations:</h3>
+            <div class="column">
+                <div>{{ form_label(form.maxDeploymentCount) }}</div>
+                <div>{{ form_widget(form.maxDeploymentCount) }}</div>
+                <div>{{ form_label(form.maxAggregateDeploymentBandwidth) }}</div>
+                <div>{{ form_widget(form.maxAggregateDeploymentBandwidth) }}</div>
+                <div>{{ form_label(form.maxSimultaneousUsers) }}</div>
+                <div>{{ form_widget(form.maxSimultaneousUsers) }}</div>
+            </div>
+            <div class="column">
+                <div>{{ form_label(form.couponCapability) }}</div>
+                <div>{{ form_widget(form.couponCapability) }}</div>
+                <div>{{ form_label(form.paymentLimitations) }}</div>
+                <div>{{ form_widget(form.paymentLimitations) }}</div>
+            </div>
+        </div>
     {{ form_end(form) }}
+    -->
 {% endblock int_bm_content %}

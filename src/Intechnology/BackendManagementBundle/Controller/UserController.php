@@ -52,7 +52,13 @@ class UserController extends Controller {
       return $this->redirect($this->generateUrl('_users'));
     }
 
-    return $this->render('IntechnologyBackendManagementBundle:User:form.html.twig', array('form' => $form->createView()));
+    return $this->render(
+      'IntechnologyBackendManagementBundle:User:form.html.twig',
+      array(
+        'form' => $form->createView(),
+        'title' => 'New user'
+      )
+    );
   }
 
   public function updateAction(Request $request) {
@@ -66,17 +72,6 @@ class UserController extends Controller {
         'No user found for id '.$id
       );
     }
-
-//    $deployments = $company->getDeployments();
-//    dump($deployments);
-//
-//    foreach ($deployments as $deployment) {
-//      print $deployment->getName() . '<br/>';
-//    }
-//    die(__FUNCTION__);
-//    print '<pre>';
-//    print_r($deployments);
-    //die(__FUNCTION__);
 
     $form = $this->createForm(new UserType(), $user);
 
@@ -101,6 +96,12 @@ class UserController extends Controller {
       return $this->redirect($this->generateUrl('_users'));
     }
 
-    return $this->render('IntechnologyBackendManagementBundle:User:form.html.twig', array('form' => $form->createView()));
+    return $this->render(
+      'IntechnologyBackendManagementBundle:User:form.html.twig',
+      array(
+        'form' => $form->createView(),
+        'title' => 'Edit ' . $user->getFullName()
+      )
+    );
   }
 } 

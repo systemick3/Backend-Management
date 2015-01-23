@@ -46,7 +46,13 @@ class CompanyController extends Controller {
       return $this->redirect($this->generateUrl('_companies'));
     }
 
-    return $this->render('IntechnologyBackendManagementBundle:Company:form.html.twig', array('form' => $form->createView()));
+    return $this->render(
+      'IntechnologyBackendManagementBundle:Company:form.html.twig',
+      array(
+        'form' => $form->createView(),
+        'title' => 'New company'
+      )
+    );
   }
 
   public function updateAction(Request $request) {
@@ -60,17 +66,6 @@ class CompanyController extends Controller {
         'No company found for id '.$id
       );
     }
-
-//    $deployments = $company->getDeployments();
-//    dump($deployments);
-//
-//    foreach ($deployments as $deployment) {
-//      print $deployment->getName() . '<br/>';
-//    }
-//    die(__FUNCTION__);
-//    print '<pre>';
-//    print_r($deployments);
-    //die(__FUNCTION__);
 
     $form = $this->createForm(new CompanyType(), $company);
 
@@ -89,6 +84,12 @@ class CompanyController extends Controller {
       return $this->redirect($this->generateUrl('_companies'));
     }
 
-    return $this->render('IntechnologyBackendManagementBundle:Company:form.html.twig', array('form' => $form->createView()));
+    return $this->render(
+      'IntechnologyBackendManagementBundle:Company:form.html.twig',
+      array(
+        'form' => $form->createView(),
+        'title' => 'Edit ' . $company->getName()
+      )
+    );
   }
 } 

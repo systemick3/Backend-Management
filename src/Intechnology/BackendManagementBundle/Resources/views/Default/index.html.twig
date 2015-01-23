@@ -1,9 +1,34 @@
 {% extends "IntechnologyBackendManagementBundle::layout.html.twig" %}
 
 {% block int_bm_content %}
-    Hello!
-    <div></div><a href="{{ path('_companies') }}">Companies</a></div>
-    <div></div><a href="{{ path('_deployments') }}">Deployments</a></div>
-    <div></div><a href="{{ path('_users') }}">Users</a></div>
-    <div></div><a href="{{ path('_logout') }}">Logout</a></div>
+    <div class="title">
+        Title goes here
+    </div>
+    <div class="messages">
+        {% for type, messages in app.session.flashbag.all() %}
+            {% for message in messages %}
+                <div class="flash-{{ type }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+    </div>
+    <div class="content">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <td>Description</td>
+                    <td>Value</td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for line in testLines  %}
+                    <tr>
+                        <td>{{ line.desc }}</td>
+                        <td>{{ line.val }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 {% endblock int_bm_content %}

@@ -418,4 +418,8 @@ class User implements UserInterface, \Serializable
     {
       $this->lastUpdate = new \DateTime();
     }
+
+    public function getFullName() {
+      return $this->getFirstName() . ' ' . $this->getLastName();
+    }
 }

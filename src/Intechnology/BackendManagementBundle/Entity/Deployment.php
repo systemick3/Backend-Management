@@ -223,18 +223,18 @@ class Deployment
     /**
      * @var \Intechnology\BackendManagementBundle\Entity\Company
      */
-    private $Company;
+    private $company;
 
     public function setCompany($company)
     {
-      $this->Company = $company;
+      $this->company = $company;
 
       return $this;
     }
 
     public function getCompany()
     {
-      return $this->Company;
+      return $this->company;
     }
 
     public function setCreatedValue()
@@ -248,9 +248,48 @@ class Deployment
     }
 
     /**
-     * @var \Intechnology\BackendManagementBundle\Entity\Company
+     * @var \Doctrine\Common\Collections\Collection
      */
-    private $company;
+    private $hardwareGroups;
 
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->hardwareGroups = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
+    /**
+     * Add hardwareGroups
+     *
+     * @param \Intechnology\BackendManagementBundle\Entity\HardwareGroup $hardwareGroups
+     * @return Deployment
+     */
+    public function addHardwareGroup(\Intechnology\BackendManagementBundle\Entity\HardwareGroup $hardwareGroups)
+    {
+        $this->hardwareGroups[] = $hardwareGroups;
+
+        return $this;
+    }
+
+    /**
+     * Remove hardwareGroups
+     *
+     * @param \Intechnology\BackendManagementBundle\Entity\HardwareGroup $hardwareGroups
+     */
+    public function removeHardwareGroup(\Intechnology\BackendManagementBundle\Entity\HardwareGroup $hardwareGroups)
+    {
+        $this->hardwareGroups->removeElement($hardwareGroups);
+    }
+
+    /**
+     * Get hardwareGroups
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getHardwareGroups()
+    {
+        return $this->hardwareGroups;
+    }
 }

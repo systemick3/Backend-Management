@@ -1,11 +1,54 @@
 {% extends "IntechnologyBackendManagementBundle::layout.html.twig" %}
 
 {% block int_bm_content %}
-    <div><a href="{{ path('_dashboard') }}">Home</a></div>
-    <div><a href="{{ path('_deployment_create') }}">Add new deployment</a></div>
-    <ul>
-        {% for deployment in deployments %}
-            <li><a href="{{ path('_deployment_update', {'id': deployment.getId()}) }}">{{ deployment.getName() }}</a></li>
+    <div class="title">
+        Deployments
+        <a href="/deployment">
+            <div class="new-button">
+                <i class="fa fa-plus"></i>
+                Deployment
+            </div>
+        </a>
+    </div>
+    <div class="messages">
+        {% for type, messages in app.session.flashbag.all() %}
+            {% for message in messages %}
+                <div class="flash-{{ type }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
         {% endfor %}
-    </ul>
+    </div>
+    <div class="content">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <td>Deployment</td>
+                    <td>Company</td>
+                    <td>Active</td>
+                </tr>
+            </thead>
+            <tbody>
+            {% for deployment in deployments %}
+                <tr>
+                    <td>
+                        <a href="{{ path('_deployment_update', {'id': deployment.getId()}) }}">{{ deployment.getName() }}</a>
+                    </td>
+                    {% if (deployment.getCompany()) %}
+                        <td>{{ deployment.getCompany().getName() }}</td>
+                    {% else %}
+                        <td></td>
+                    {% endif %}
+                    <td>
+                        {% if deployment.getActive() %}
+                            <i class="fa fa-thumbs-up"></i>
+                        {% else %}
+                            <i class="fa fa-times-circle"></i>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
 {% endblock int_bm_content %}

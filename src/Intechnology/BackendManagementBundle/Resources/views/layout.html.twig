@@ -2,36 +2,246 @@
 <html>
     <head>
         <meta charset="UTF-8" />
+        <title>inTechnology wifi captive portal mvp build</title>
+        <meta name="description" content="inTechnology wifi captive portal mvp build">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1.0">
+
+        <link rel="stylesheet" href="/bundles/intechnologybackendmanagement/assets/stylesheets/style.css">
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     </head>
     <body>
-        <div>
-            {#
-            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
-                <a href="{{ path('fos_user_security_logout') }}">
-                    {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
-                </a>
-            {% else %}
-                <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
-            {% endif %}
-            #}
-        </div>
-
-        {% for type, messages in app.session.flashbag.all() %}
-            {% for message in messages %}
-                <div class="flash-{{ type }}">
-                    {{ message }}
+        <div id="page" class="front">
+            
+            <div class="row" id="header">
+                <div class="header-logo col-md-2">
+                    <a>
+                        <img src="/bundles/intechnologybackendmanagement/assets/images/svg/logo.svg" alt="inTechnology wifi">
+                    </a>
                 </div>
-            {% endfor %}
-        {% endfor %}
+                {% if is_granted('ROLE_USER') %}
+                <div class="header-buttons col-md-2">
+                    <ul>
+                        <li class="nav-btn nav-btn-user">
+                            <a href="#">{{ render(controller('IntechnologyBackendManagementBundle:Default:fullName')) }}</a>
+                            <i class="fa fa-user"></i>
+                        </li>
+                        <li class="nav-btn nav-btn-logout">
+                            <a href="/logout">Logout</a>
+                            <i class="fa fa-close"></i>
+                        </li>
+                    </ul>
+                </div>
+                {% endif %}
+            </div>
+            
+            <div class="row page-body">
+                {% block int_login_content %}
+                {% endblock int_login_content %}
+                
+                {% if is_granted('ROLE_USER') %}
+                <div class="col-md-2" id="sidebar">
+                    <ul class="nav nav-pills nav-stacked">
+                        <li class="nav-btn nav-btn-status">
+                            <a href="/" class="first">
+                                <div><i class="fa fa-tachometer fa-5x"></i></div>
+                                <span>Status</span>
+                            </a>
+                        </li>
+                        <li class="nav-btn nav-btn-companies">
+                            <a href="/companies">
+                                <div><i class="fa fa-building fa-5x"></i></div>
+                                <span>Companies</span>
+                            </a>
+                        </li>
+                        <li class="nav-btn nav-btn-deployments">
+                            <a href="/deployments">
+                                <div><i class="fa fa-cog fa-5x"></i></div>
+                                <span>Deployments</span>
+                            </a>
+                        </li>
+                        <li class="nav-btn nav-btn-users">
+                            <a href="/users">
+                                <div><i class="fa fa-user fa-5x"></i></div>
+                                <span>Users</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                {% endif %}
+                <div class="col-md-2" id="main-content">
+                    <div>
+                        {#
+                        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                            {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
+                            <a href="{{ path('fos_user_security_logout') }}">
+                                {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                            </a>
+                        {% else %}
+                            <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+                        {% endif %}
+                        #}
+                    </div>
 
-        <div>
-            {#
-            {% block fos_user_content %}
-            {% endblock fos_user_content %}
-            #}
-            {% block int_bm_content %}
-            {% endblock int_bm_content %}
+                    {#
+                    {% block fos_user_content %}
+                    {% endblock fos_user_content %}
+                    #}
+                    {% block int_bm_content %}
+                    {% endblock int_bm_content %}
+                </div>
+            </div>
+            <div class="row">
+                <footer class="footer  one-whole  text-center  pos-fixed  pos-bottom">
+                    <small>&copy; 2014 intechnology WiFi, All Rights Reserved.</small>
+                </footer>
+            </div>
         </div>
+
+        <!--<div class="sidebar" id="js--sidebar">
+            <div class="table  text-uppercase">
+                <div class="table__row">
+                    <div class="sidebar__items">
+                        <ul>
+                            <li>
+                                <a href="/">
+                                    <i class="icon  icon--large  icon--stack  icon-status  block-center  palm--hidden"></i>
+                                    <span>Status</span>
+                                </a>
+                            </li>
+                            <li class="active">
+                                <a href="/companies">
+                                    <i class="icon  icon--large  icon--stack  icon-companies--active  block-center palm--hidden"></i>
+                                    <span>Companies</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/deployments">
+                                    <i class="icon  icon--large  icon--stack  icon-deployments  block-center palm--hidden"></i>
+                                    <span>Users</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/users">
+                                    <i class="icon  icon--large  icon--stack  icon-users  block-center palm--hidden"></i>
+                                    <span>Users</span>
+                                </a>
+                            </li>
+                            <li class="palm--visible">
+                                <a href="#"><span>Edit Profile</span></a>
+                            </li>
+                            <li class="palm--visible">
+                                <a href="#"><span>Logout</span></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>-->
+        <!-- End: Side Bar -->
+        <!-- Start: Header -->
+        <!--<div class="grid">
+            <div class="grid__item">
+                <div class="header  header--logo">
+                    <div class="nudge-right  palm--hidden">
+                        <div class="btn--group  float-right">
+                            <a class="btn  tint-white" href="#"><small class="lap--hidden">Dominic Fee </small> <i class="icon  icon--mini  icon-user"></i></a>
+                            <a class="btn  tint-white" href="#"><i class="icon  icon--mini  icon-exit"></i><small class="lap--hidden"> Logout</small></a>
+                        </div>
+                    </div>
+                    <a class="nudge-left-half  btn  btn--transparent  lap-and-up--hidden" id="js--nav-toggle" href="#"><i class="icon  icon--small  icon-menu"></i></a>
+                </div>
+            </div>
+        </div>-->
+        <!-- End: Header -->
+        <!--<div class="container">
+            <div class="grid">
+                <div class="grid__item">
+                    <ul class="breadcrumb  palm--text-center">
+                        <li><a href="/">Companies</a></li>
+                        <li><a href="/">Liverpool FC</a></li>
+                        <li><a href="/">3rd Level</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="grid">
+                <div class="grid__item">
+                    <a href="#" id="button" class="button">button</a>-->
+                    <!-- Start: Summary Item -->
+                    <!--<div class="well  well--small">
+                        <div class="heading  heading--block">
+                            <div class="heading--block__btn__container">
+                                <a class="heading--block__btn" href="#">
+                                    <span class="h5">&plus; </span><span class="palm--hidden  text-uppercase">Company</span>
+                                </a>
+                            </div>
+                            <h5 class="text-uppercase  text-overflow">All companies - Page <strong>4</strong> / 7</h5>
+                        </div>
+                        <div class="well--small__body">-->
+                            <!-- Start: Tabular Data -->
+                            <!--<table class="table  table--striped">
+                                <thead>
+                                <tr>
+                                    <th class="ten-twelfths">Company</th>
+                                    <th class="one-twelfth  text-center">Deployments</th>
+                                    <th class="one-twelfth  text-center">Active</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td><img class="nudge-right-half" src="http://placehold.it/20x20&amp;text=+" alt="Liverpool FC logo"/><a href="#">Liverpool FC</a></td>
+                                    <td class="text-center">1</td>
+                                    <td class="text-center"><i class="icon  icon--small  icon-tick"><span class="hide">Yes</span></i></td>
+                                </tr>
+                                <tr>
+                                    <td><img class="nudge-right-half" src="http://placehold.it/20x20&amp;text=+" alt="Manchester United logo"/><a href="#">Manchester United</a></td>
+                                    <td class="text-center">1</td>
+                                    <td class="text-center"><i class="icon  icon--small  icon-tick"><span class="hide">Yes</span></i></td>
+                                </tr>
+                                <tr>
+                                    <td><a href="#"><img class="nudge-right-half" src="http://placehold.it/20x20&amp;text=+" alt="Harrogate Borough Council logo"/>Harrogate Borough Council</a></td>
+                                    <td class="text-center">2</td>
+                                    <td class="text-center"><i class="icon  icon--small  icon-tick"><span class="hide">Yes</span></i></td>
+                                </tr>
+                                <tr>
+                                    <td><img class="nudge-right-half" src="http://placehold.it/20x20&amp;text=+" alt="AEG Live logo"/><a href="#">AEG Live</a></td>
+                                    <td class="text-center">4</td>
+                                    <td class="text-center"><i class="icon  icon--small  icon-cross"><span class="hide">No</span></i></td>
+                                </tr>
+                                </tbody>
+                            </table>-->
+                            <!-- End: Tabular Data -->
+                        <!--</div>
+                    </div>-->
+                    <!-- End: Summary Item -->
+                <!--</div>
+                <div class="grid__item">-->
+                    <!-- Start: Pagination -->
+                    <!--<div class="grid">
+                        <div class="grid__item  text-center">
+                            <div class="pagination">
+                                <ul>
+                                    <li><a href="#">&laquo;</a></li>
+                                    <li class="palm--hidden  lap--hidden"><a href="#">1</a></li>
+                                    <li class="palm--hidden  lap--hidden"><a href="#">2</a></li>
+                                    <li class="palm--hidden"><a href="#">3</a></li>
+                                    <li><a href="#">4</a></li>
+                                    <li><a href="#">5</a></li>
+                                    <li class="pagination--active"><a href="#">6</a></li>
+                                    <li><a href="#">7</a></li>
+                                    <li><a href="#">8</a></li>
+                                    <li class="palm--hidden"><a href="#">9</a></li>
+                                    <li class="palm--hidden  lap--hidden"><a href="#">10</a></li>
+                                    <li><a href="#">&raquo;</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>-->
+                    <!-- End: Pagination -->
+                <!--</div>
+            </div>
+        </div>-->
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <script src="/bundles/intechnologybackendmanagement/scripts/script.js"></script>
     </body>
 </html>

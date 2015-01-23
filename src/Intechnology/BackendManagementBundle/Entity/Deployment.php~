@@ -223,18 +223,18 @@ class Deployment
     /**
      * @var \Intechnology\BackendManagementBundle\Entity\Company
      */
-    private $Company;
+    private $company;
 
     public function setCompany($company)
     {
-      $this->Company = $company;
+      $this->company = $company;
 
       return $this;
     }
 
     public function getCompany()
     {
-      return $this->Company;
+      return $this->company;
     }
 
     public function setCreatedValue()
@@ -246,11 +246,5 @@ class Deployment
     {
       $this->lastUpdate = new \DateTime();
     }
-
-    /**
-     * @var \Intechnology\BackendManagementBundle\Entity\Company
-     */
-    private $company;
-
 
 }

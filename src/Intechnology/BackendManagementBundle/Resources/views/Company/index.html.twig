@@ -1,11 +1,50 @@
 {% extends "IntechnologyBackendManagementBundle::layout.html.twig" %}
 
 {% block int_bm_content %}
-    <div><a href="{{ path('_dashboard') }}">Home</a></div>
-    <div><a href="{{ path('_company_create') }}">Add new company</a></div>
-    <ul>
-        {% for company in companies %}
-            <li><a href="{{ path('_company_update', {'id': company.getId()}) }}">{{ company.getName() }}</a></li>
+    <div class="title">
+        Companies
+        <a href="/company">
+            <div class="new-button">
+                <i class="fa fa-plus"></i>
+                Company
+            </div>
+        </a>
+    </div>
+    <div class="messages">
+        {% for type, messages in app.session.flashbag.all() %}
+            {% for message in messages %}
+                <div class="flash-{{ type }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
         {% endfor %}
-    </ul>
+    </div>
+    <div class="content">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <td>Company</td>
+                <td>Deployments</td>
+                <td>Active</td>
+            </tr>
+            </thead>
+            <tbody>
+            {% for company in companies %}
+                <tr>
+                    <td>
+                        <a href="{{ path('_company_update', {'id': company.getId()}) }}">{{ company.getName() }}</a>
+                    </td>
+                    <td>{{ company.getDeploymentCount() }}</td>
+                    <td>
+                        {% if company.getActive() %}
+                            <i class="fa fa-thumbs-up"></i>
+                        {% else %}
+                            <i class="fa fa-times-circle"></i>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
 {% endblock int_bm_content %}

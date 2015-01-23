@@ -152,4 +152,4 @@ Intechnology\BackendManagementBundle\Entity\Company:
             orphanRemoval: false
     lifecycleCallbacks:
         prePersist: [setCreatedValue]
--       preFlush: [setUpdatedValue]
+        preFlush: [setUpdatedValue]

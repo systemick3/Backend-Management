@@ -46,7 +46,13 @@ class DeploymentController extends Controller {
       return $this->redirect($this->generateUrl('_deployments'));
     }
 
-    return $this->render('IntechnologyBackendManagementBundle:Deployment:form.html.twig', array('form' => $form->createView()));
+    return $this->render(
+      'IntechnologyBackendManagementBundle:Deployment:form.html.twig',
+      array(
+        'form' => $form->createView(),
+        'title' => 'New Deployment'
+      )
+    );
   }
 
   public function updateAction(Request $request) {
@@ -61,9 +67,9 @@ class DeploymentController extends Controller {
       );
     }
 
-//    $company = $deployment->getCompany();
-//    dump($company);
-//    die($deployment->getCompany()->getName());
+    $hardwareGroups = $deployment->getHardwareGroups();
+    //dump($deployment);
+    //die($deployment->getCompany()->getName());
 
     $form = $this->createForm(new DeploymentType(), $deployment);
 
@@ -82,7 +88,15 @@ class DeploymentController extends Controller {
       return $this->redirect($this->generateUrl('_deployments'));
     }
 
-    return $this->render('IntechnologyBackendManagementBundle:Deployment:form.html.twig', array('form' => $form->createView()));
+    return $this->render(
+      'IntechnologyBackendManagementBundle:Deployment:form.html.twig',
+      array(
+        'form' => $form->createView(),
+        'title' => 'Edit ' . $deployment->getName(),
+        'deployment' => $deployment,
+        'hardwareGroups' => $hardwareGroups
+      )
+    );
   }
 
 } 

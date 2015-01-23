@@ -52,6 +52,10 @@ Intechnology\BackendManagementBundle\Entity\Deployment:
                 company_id:
                     referencedColumnName: id
             orphanRemoval: false
+    oneToMany:
+        hardwareGroups:
+            targetEntity: HardwareGroup
+            mappedBy: deployment
     lifecycleCallbacks:
         prePersist: [setCreatedValue]
         preFlush: [setUpdatedValue]

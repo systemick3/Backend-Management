@@ -778,4 +778,37 @@ class Company
     {
       $this->lastUpdate = new \DateTime();
     }
+    /**
+     * @var \Intechnology\BackendManagementBundle\Entity\Country
+     */
+    private $country;
+
+
+    /**
+     * Set country
+     *
+     * @param \Intechnology\BackendManagementBundle\Entity\Country $country
+     * @return Company
+     */
+    public function setCountry(\Intechnology\BackendManagementBundle\Entity\Country $country = null)
+    {
+        $this->country = $country;
+
+        return $this;
+    }
+
+    /**
+     * Get country
+     *
+     * @return \Intechnology\BackendManagementBundle\Entity\Country 
+     */
+    public function getCountry()
+    {
+        return $this->country;
+    }
+
+    public function getDeploymentCount() {
+      $deployments = $this->getDeployments();
+      return count($deployments);
+    }
 }

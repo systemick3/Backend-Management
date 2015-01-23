@@ -25,14 +25,17 @@ class CompanyType extends AbstractType
       ->add('town')
       ->add('county')
       ->add('postcode')
-      ->add('fCountryId')
+      ->add('country', 'entity', array(
+        'class' => 'IntechnologyBackendManagementBundle:Country',
+        'property' => 'name'
+      ))
       ->add('telephone')
       ->add('primaryContactName')
       ->add('primaryContactEmailAddress')
       ->add('outOfHoursContactName')
       ->add('outOfHoursContactTelephone')
       ->add('outOfHoursContactEmailAddress')
-      ->add('logo')
+      //->add('logo')
       ->add('maxDeploymentCount')
       ->add('maxAggregateDeploymentBandwidth')
       ->add('maxSimultaneousUsers')
@@ -42,7 +45,7 @@ class CompanyType extends AbstractType
       //->add('lastUpdate')
       ->add('superCompany')
       ->add('active')
-      ->add('deleted')
+      //->add('deleted')
       ->add('Save', 'submit');
   }
 

@@ -1,3 +1,5 @@
 # Ignore paths that contain user-generated content.
 app/cache
 
+app/logs
+

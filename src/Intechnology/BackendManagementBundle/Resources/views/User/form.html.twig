@@ -1,6 +1,76 @@
 {% extends "IntechnologyBackendManagementBundle::layout.html.twig" %}
 
 {% block int_bm_content %}
+    <div class="title">
+        {{ title }}
+    </div>
+    <div class="messages">
+        {% for type, messages in app.session.flashbag.all() %}
+            {% for message in messages %}
+                <div class="flash-{{ type }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+    </div>
+    <div class="content">
+        <div class="form-container">
+            {{ form_start(form) }}
+            <div class="form-errors row">{{ form_errors(form) }}</div>
+            <div class="row form-row">
+                <div class="col-md-2 column-full-width">
+                    <h4>Personal</h4>
+                </div>
+            </div>
+            <div class="row form-row">
+                <div class="col-md-2 column">
+                    <div>{{ form_label(form.firstName) }}</div>
+                    <div>{{ form_widget(form.firstName) }}</div>
+                    <div>{{ form_label(form.telephone) }}</div>
+                    <div>{{ form_widget(form.telephone) }}</div>
+                </div>
+                <div class="col-md-2 column">
+                    <div>{{ form_label(form.lastName) }}</div>
+                    <div>{{ form_widget(form.lastName) }}</div>
+                    <div>{{ form_label(form.mobileTelephone) }}</div>
+                    <div>{{ form_widget(form.mobileTelephone) }}</div>
+                </div>
+            </div>
+            <div class="row form-row">
+                <div class="col-md-2 column-full-width">
+                    <div>{{ form_label(form.username) }}</div>
+                    <div>{{ form_widget(form.username) }}</div>
+                </div>
+            </div>
+            <div class="row form-row">
+                <div class="col-md-2 column">
+                    <div>{{ form_label(form.company) }}</div>
+                    <div>{{ form_widget(form.company) }}</div>
+                </div>
+                <div class="col-md-2 column">
+                    <div>{{ form_label(form.userType) }}</div>
+                    <div>{{ form_widget(form.userType) }}</div>
+                </div>
+            </div>
+            <div class="row form-row">
+                <div class="col-md-2 column-full-width">
+                    <h4>Security</h4>
+                    {{ form_row( form.password.first, { 'label': 'Password' }) }}
+                    {{ form_row( form.password.second, { 'label': 'Confirm Password' }) }}
+                </div>
+            </div>
+            <div class="row form-row">
+                <div class="col-md-2 column">
+                    <h4>Status</h4>
+                    <div class="checkbox">
+                        <label>{{ form_widget(form.isActive) }} <strong>Active</strong></label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--
     {{ form_start(form) }}
         {{ form_errors(form) }}
         <div class="form-row">
@@ -48,4 +118,5 @@
             {{ form_widget( form.isActive) }}
         </div>
     {{ form_end(form) }}
+    -->
 {% endblock int_bm_content %}

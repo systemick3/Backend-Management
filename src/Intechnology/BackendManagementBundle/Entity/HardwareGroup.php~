@@ -37,17 +37,17 @@ class HardwareGroup
     /**
      * @var \Intechnology\BackendManagementBundle\Entity\Deployment
      */
-    private $fDeployment;
+    private $deployment;
 
     /**
      * @var \Intechnology\BackendManagementBundle\Entity\HardwareGroup
      */
-    private $fParentHardwareGroup;
+    private $parentHardwareGroup;
 
     /**
      * @var \Intechnology\BackendManagementBundle\Entity\HardwareItem
      */
-    private $fParentHardwareItem;
+    private $parentHardwareItem;
 
 
     /**
@@ -158,9 +158,9 @@ class HardwareGroup
      * @param \Intechnology\BackendManagementBundle\Entity\Deployment $fDeployment
      * @return HardwareGroup
      */
-    public function setFDeployment(\Intechnology\BackendManagementBundle\Entity\Deployment $fDeployment = null)
+    public function setDeployment(\Intechnology\BackendManagementBundle\Entity\Deployment $deployment = null)
     {
-        $this->fDeployment = $fDeployment;
+        $this->deployment = $deployment;
 
         return $this;
     }
@@ -170,54 +170,55 @@ class HardwareGroup
      *
      * @return \Intechnology\BackendManagementBundle\Entity\Deployment 
      */
-    public function getFDeployment()
+    public function getDeployment()
     {
-        return $this->fDeployment;
+        return $this->deployment;
     }
 
     /**
-     * Set fParentHardwareGroup
+     * Set parentHardwareGroup
      *
-     * @param \Intechnology\BackendManagementBundle\Entity\HardwareGroup $fParentHardwareGroup
+     * @param \Intechnology\BackendManagementBundle\Entity\HardwareGroup $parentHardwareGroup
      * @return HardwareGroup
      */
-    public function setFParentHardwareGroup(\Intechnology\BackendManagementBundle\Entity\HardwareGroup $fParentHardwareGroup = null)
+    public function setParentHardwareGroup(\Intechnology\BackendManagementBundle\Entity\HardwareGroup $parentHardwareGroup = null)
     {
-        $this->fParentHardwareGroup = $fParentHardwareGroup;
+        $this->parentHardwareGroup = $parentHardwareGroup;
 
         return $this;
     }
 
     /**
-     * Get fParentHardwareGroup
+     * Get parentHardwareGroup
      *
      * @return \Intechnology\BackendManagementBundle\Entity\HardwareGroup 
      */
-    public function getFParentHardwareGroup()
+    public function getParentHardwareGroup()
     {
-        return $this->fParentHardwareGroup;
+        return $this->parentHardwareGroup;
     }
 
     /**
-     * Set fParentHardwareItem
+     * Set parentHardwareItem
      *
-     * @param \Intechnology\BackendManagementBundle\Entity\HardwareItem $fParentHardwareItem
+     * @param \Intechnology\BackendManagementBundle\Entity\HardwareItem $parentHardwareItem
      * @return HardwareGroup
      */
-    public function setFParentHardwareItem(\Intechnology\BackendManagementBundle\Entity\HardwareItem $fParentHardwareItem = null)
+    public function setParentHardwareItem(\Intechnology\BackendManagementBundle\Entity\HardwareItem $parentHardwareItem = null)
     {
-        $this->fParentHardwareItem = $fParentHardwareItem;
+        $this->parentHardwareItem = $parentHardwareItem;
 
         return $this;
     }
 
     /**
-     * Get fParentHardwareItem
+     * Get parentHardwareItem
      *
      * @return \Intechnology\BackendManagementBundle\Entity\HardwareItem 
      */
-    public function getFParentHardwareItem()
+    public function getParentHardwareItem()
     {
-        return $this->fParentHardwareItem;
+        return $this->parentHardwareItem;
     }
+
 }

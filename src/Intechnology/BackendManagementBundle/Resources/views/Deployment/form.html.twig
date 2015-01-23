@@ -1,7 +1,93 @@
 {% extends "IntechnologyBackendManagementBundle::layout.html.twig" %}
 
 {% block int_bm_content %}
+    <div class="title">
+        {{ title }}
+    </div>
+    <div class="messages">
+        {% for type, messages in app.session.flashbag.all() %}
+            {% for message in messages %}
+                <div class="flash-{{ type }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+    </div>
+    <div class="content">
+        <div class="form-container">
+            {{ form_start(form) }}
+            <div class="form-errors row">{{ form_errors(form) }}</div>
+            <div class="row form-row">
+                <div class="col-md-2 column">
+                    <h4>Details</h4>
+                    <div>{{ form_label(form.name) }}</div>
+                    <div>{{ form_widget(form.name) }}</div>
+                    <div>{{ form_label(form.company) }}</div>
+                    <div>{{ form_widget(form.company) }}</div>
+                    <div class="spacer-5"></div>
+                </div>
+                <div class="col-md-2 column full-width">
+                    Map goes here
+                </div>
+            </div>
+            <div class="row form-row">
+                <div class="col-md-1 column-full-width">
+                    <h4>Status</h4>
+                    <div class="checkbox">
+                        <label>{{ form_widget(form.active) }} <strong>Active</strong></label>
+                    </div>
+                </div>
+            </div>
+            <div class="row form-row"><div class="col-md-1 column-full-width">{{ form_end(form) }}</div></div>
+            <div class="row form-row">
+                <div class="col-md-1 column-full-width">
+                    <h4>Hardware Groups</h4>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <td>Group</td>
+                                <td>Active</td>
+                            </tr>
+                            </thead>
+                        <tbody>
+                            {% for hardwareGroup in hardwareGroups %}
+                                <tr>
+                                    <td>
+                                        <a href="{{ path('_deployment_update', {'id': hardwareGroup.getId()}) }}">
+                                            {{ hardwareGroup.getName() }}
+                                        </a>
+                                    </td>
+                                    <td>
+                                        {% if hardwareGroup.getActive() %}
+                                            <i class="fa fa-thumbs-up"></i>
+                                        {% else %}
+                                            <i class="fa fa-times-circle"></i>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--
     {{ form_start(form) }}
         {{ form_errors(form) }}
+        <div class="form-row">
+            <div>{{ form_label(form.name) }}</div>
+            <div>{{ form_widget(form.name) }}</div>
+            <div>{{ form_label(form.company) }}</div>
+            <div>{{ form_widget(form.company) }}</div>
+            <div>{{ form_label(form.active) }}</div>
+            <div>{{ form_widget(form.active) }}</div>
+        </div>
     {{ form_end(form) }}
+    <ul>
+        {% for hardwareGroup in hardwareGroups %}
+            <li><a href="{{ path('_deployment_update', {'id': hardwareGroup.getId()}) }}">{{ hardwareGroup.getName() }}</a></li>
+        {% endfor %}
+    </ul>
+    -->
 {% endblock int_bm_content %}

@@ -6,15 +6,15 @@ Intechnology\BackendManagementBundle\Entity\HardwareGroup:
             columns:
                 - active
                 - deleted
-        hardware_groups_ibfk_1:
+        deployment_id_fk:
             columns:
-                - f_deployment_id
-        hardware_groups_ibfk_2:
+                - deployment_id
+        parent_hardware_group_id_fk:
             columns:
-                - f_parent_hardware_group_id
-        hardware_groups_ibfk_3:
+                - parent_hardware_group_id
+        parent_hardware_item_id_fk:
             columns:
-                - f_parent_hardware_item_id
+                - parent_hardware_item_id
     id:
         id:
             type: integer
@@ -35,43 +35,37 @@ Intechnology\BackendManagementBundle\Entity\HardwareGroup:
             length: 65535
             fixed: false
         active:
-            type: string
+            type: boolean
             nullable: true
-            length: null
-            fixed: false
-            default: Y
         deleted:
-            type: string
+            type: boolean
             nullable: true
-            length: null
-            fixed: false
-            default: N
     manyToOne:
-        fDeployment:
-            targetEntity: Deployment
-            cascade: {  }
-            mappedBy: null
-            inversedBy: null
-            joinColumns:
-                f_deployment_id:
-                    referencedColumnName: id
-            orphanRemoval: false
-        fParentHardwareGroup:
-            targetEntity: HardwareGroup
-            cascade: {  }
-            mappedBy: null
-            inversedBy: null
-            joinColumns:
-                f_parent_hardware_group_id:
-                    referencedColumnName: id
-            orphanRemoval: false
-        fParentHardwareItem:
+        parentHardwareItem:
             targetEntity: HardwareItem
             cascade: {  }
             mappedBy: null
             inversedBy: null
             joinColumns:
-                f_parent_hardware_item_id:
+                parent_hardware_item_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        deployment:
+            targetEntity: Deployment
+            cascade: {  }
+            mappedBy: hardwareGroups
+            inversedBy: hardwareGroups
+            joinColumns:
+                deployment_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        parentHardwareGroup:
+            targetEntity: HardwareGroup
+            cascade: {  }
+            mappedBy: hardwareGroup
+            inversedBy: null
+            joinColumns:
+                parent_hardware_group_id:
                     referencedColumnName: id
             orphanRemoval: false
     lifecycleCallbacks: {  }

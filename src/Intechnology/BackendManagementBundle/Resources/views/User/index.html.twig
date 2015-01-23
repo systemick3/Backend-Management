@@ -1,11 +1,62 @@
 {% extends "IntechnologyBackendManagementBundle::layout.html.twig" %}
 
 {% block int_bm_content %}
-    <div><a href="{{ path('_dashboard') }}">Home</a></div>
+    <div class="title">
+        Users
+        <a href="/user">
+            <div class="new-button">
+                <i class="fa fa-plus"></i>
+                User
+            </div>
+        </a>
+    </div>
+    <div class="messages">
+        {% for type, messages in app.session.flashbag.all() %}
+            {% for message in messages %}
+                <div class="flash-{{ type }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+    </div>
+    <div class="content">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <td>User</td>
+                <td>Company</td>
+                <td>Active</td>
+            </tr>
+            </thead>
+            <tbody>
+            {% for user in users %}
+                <tr>
+                    <td>
+                        <a href="{{ path('_user_update', {'id': user.getId()}) }}">{{ user.getFullName() }}</a>
+                    </td>
+                    {% if (user.getCompany()) %}
+                        <td>{{ user.getCompany().getName() }}</td>
+                    {% else %}
+                        <td></td>
+                    {% endif %}
+                    <td>
+                        {% if user.getIsActive() %}
+                            <i class="fa fa-thumbs-up"></i>
+                        {% else %}
+                            <i class="fa fa-times-circle"></i>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!--<div><a href="{{ path('_dashboard') }}">Home</a></div>
     <div><a href="{{ path('_user_create') }}">Add new user</a></div>
     <ul>
         {% for user in users %}
             <li><a href="{{ path('_user_update', {'id': user.getId()}) }}">{{ user.getUsername() }}</a></li>
         {% endfor %}
-    </ul>
+    </ul>-->
 {% endblock int_bm_content %}

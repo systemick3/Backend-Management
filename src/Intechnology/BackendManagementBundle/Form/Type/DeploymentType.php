@@ -19,12 +19,16 @@ class DeploymentType extends AbstractType
   {
     $builder
       ->add('name')
-      ->add('mapPolygon')
+      ->add('company', 'entity', array(
+        'class' => 'IntechnologyBackendManagementBundle:Company',
+        'property' => 'name'
+      ))
+      //->add('mapPolygon')
       //->add('created')
       //->add('lastUpdate')
       ->add('active')
-      ->add('deleted')
-      ->add('CompanyId')
+      //->add('deleted')
+      //->add('CompanyId')
       ->add('Save', 'submit');
   }
 

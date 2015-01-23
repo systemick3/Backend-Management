@@ -14,3 +14,13 @@ Intechnology\BackendManagementBundle\Entity\Company:
     properties:
         name:
             - NotBlank: ~
+        town:
+            - NotBlank: ~
+        postcode:
+            - NotBlank: ~
+        primaryContactName:
+            - NotBlank: ~
+        primaryContactEmailAddress:
+            - Email:
+                message: The email "{{ value }}" is not a valid email.
+                checkMX: false
